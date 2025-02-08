@@ -1,0 +1,64 @@
+[gd_scene load_steps=8 format=3 uid="uid://bk4v666i5d8tb"]
+
+[ext_resource type="Texture2D" uid="uid://bhwvmtm13y2wg" path="res://scene/abilities/axe_ability/weapon_throwing_axe.png" id="1_7khrc"]
+[ext_resource type="Script" path="res://scene/abilities/axe_ability/axe_ability.gd" id="1_8d4cd"]
+[ext_resource type="PackedScene" uid="uid://b2xe2q0ii2gk4" path="res://scene/components/hit_box_component.tscn" id="3_fml5v"]
+
+[sub_resource type="Animation" id="Animation_b4qoe"]
+resource_name = "new_animation"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.2, 0.2001, 0.2002, 0.2003, 0.2004, 0.203655, 0.499805),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [3.45467, 3.45467, 3.45467, 3.45467, 3.45467, 0.0, 6.28319]
+}
+
+[sub_resource type="Animation" id="Animation_vhuhg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pnuke"]
+_data = {
+"RESET": SubResource("Animation_vhuhg"),
+"new_animation": SubResource("Animation_b4qoe")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ha6k6"]
+
+[node name="AxeAbility" type="Node2D"]
+script = ExtResource("1_8d4cd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pnuke")
+}
+autoplay = "new_animation"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.17, 1.17)
+texture = ExtResource("1_7khrc")
+offset = Vector2(0.69, -0.38)
+
+[node name="HitBoxComponent" parent="." instance=ExtResource("3_fml5v")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBoxComponent"]
+shape = SubResource("CircleShape2D_ha6k6")
