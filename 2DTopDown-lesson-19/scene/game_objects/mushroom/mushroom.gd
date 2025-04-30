@@ -5,13 +5,15 @@ extends CharacterBody2D
 @onready var movement_component = $MovementComponent
 
 @export var death_scene: PackedScene
-
+@export var shadow: Sprite2D
 @export var sprite: CompressedTexture2D
 
 func _ready():
 	health_component.died.connect(on_died)
 
 func _process(delta):
+	move_shadow()
+	
 	var direction = movement_component.get_direction()
 	movement_component.move_to_player(self)
 	
@@ -38,10 +40,14 @@ func on_died():
 		# Убедимся, что sprite_offset найден
 		if death_instance.sprite_offset != null:
 			death_instance.sprite_offset.position.y = animated_sprite_2d.offset.y
-			print(death_instance.sprite_offset.position.y)
+			
 
 		death_instance.global_position = global_position
 	else:
 		print("Ошибка: death_instance = null")
 	
 	queue_free()
+	
+func move_shadow():
+	if shadow != null:
+		shadow.position = Vector2(0, 0)

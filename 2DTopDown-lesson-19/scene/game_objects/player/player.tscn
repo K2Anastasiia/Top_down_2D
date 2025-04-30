@@ -1,19 +1,30 @@
-[gd_scene load_steps=21 format=3 uid="uid://b0ump57ta6uh8"]
+[gd_scene load_steps=28 format=3 uid="uid://b0ump57ta6uh8"]
 
 [ext_resource type="Script" path="res://scene/game_objects/player/player.gd" id="1_8oolj"]
-[ext_resource type="Texture2D" uid="uid://c1tcfei7yvse7" path="res://scene/game_objects/player/knight_f_hit_anim_f0.png" id="1_i2o30"]
-[ext_resource type="Texture2D" uid="uid://b12n41mfc3dlb" path="res://scene/game_objects/player/knight_f_idle_anim_f0.png" id="2_6qacu"]
 [ext_resource type="PackedScene" uid="uid://d02yl8nx3spsb" path="res://scene/abilities/attack_ability/attack_controller.tscn" id="2_prcev"]
 [ext_resource type="Script" path="res://scene/components/health_component.gd" id="3_4fq0x"]
-[ext_resource type="Texture2D" uid="uid://d0i6e1pmrvsdy" path="res://scene/game_objects/player/knight_f_idle_anim_f1.png" id="3_kmhla"]
-[ext_resource type="Texture2D" uid="uid://di8bh7fwjpwla" path="res://scene/game_objects/player/knight_f_idle_anim_f2.png" id="4_6n3le"]
 [ext_resource type="PackedScene" uid="uid://7j1itn055ypd" path="res://scene/components/damage_text_component.tscn" id="4_ja3y4"]
-[ext_resource type="Texture2D" uid="uid://c7ehbgi4m6nx1" path="res://scene/game_objects/player/knight_f_idle_anim_f3.png" id="5_5r35s"]
-[ext_resource type="Texture2D" uid="uid://clu4onj7mwifa" path="res://scene/game_objects/player/knight_f_run_anim_f0.png" id="6_kiy7l"]
-[ext_resource type="Texture2D" uid="uid://bdm4mspvpgybf" path="res://scene/game_objects/player/knight_f_run_anim_f1.png" id="7_vgjvu"]
-[ext_resource type="Texture2D" uid="uid://bsmedwf2v1q1b" path="res://scene/game_objects/player/knight_f_run_anim_f2.png" id="8_s6gq3"]
-[ext_resource type="Texture2D" uid="uid://bvpb2eqisbpu1" path="res://scene/game_objects/player/knight_f_run_anim_f3.png" id="9_8p638"]
+[ext_resource type="PackedScene" uid="uid://lih3615ky2cp" path="res://scene/components/flash_component.tscn" id="5_kyc5p"]
+[ext_resource type="Shader" path="res://scene/components/flash_component.gdshader" id="6_l8oev"]
+[ext_resource type="Texture2D" uid="uid://x5kyqhmfw6ly" path="res://scene/game_objects/player/pl_hurnt_1.png" id="7_bq8gs"]
+[ext_resource type="Texture2D" uid="uid://qu6dacmmhh6s" path="res://scene/game_objects/player/pl_hurnt_2.png" id="8_1vunj"]
+[ext_resource type="Texture2D" uid="uid://cn7a4xl5h5cq3" path="res://scene/game_objects/player/pl_hurnt_3.png" id="9_n8pg5"]
+[ext_resource type="Texture2D" uid="uid://bctx34lc7wyle" path="res://scene/game_objects/player/pl_hurnt_4.png" id="10_pqda8"]
+[ext_resource type="Texture2D" uid="uid://cpf6000htkxhb" path="res://scene/game_objects/player/pl_idel_1.png" id="11_rxhr8"]
+[ext_resource type="Texture2D" uid="uid://c5jxh7vtlvtiy" path="res://scene/game_objects/player/pl_idel_2.png" id="12_mu4no"]
+[ext_resource type="Texture2D" uid="uid://c73itms81dn3r" path="res://scene/game_objects/player/pl_idel_3.png" id="13_woo0r"]
 [ext_resource type="PackedScene" uid="uid://c8re7lujgbs2q" path="res://scene/manager/upgrade_manager.tscn" id="14_63y2f"]
+[ext_resource type="Texture2D" uid="uid://bqeleaqi0phgh" path="res://scene/game_objects/player/pl_idel_4.png" id="14_faqv6"]
+[ext_resource type="Texture2D" uid="uid://c6p6dt7pf1k8m" path="res://scene/game_objects/player/pl_walk_1.png" id="15_0ltp3"]
+[ext_resource type="Texture2D" uid="uid://c2abuyok3xvvg" path="res://scene/game_objects/player/pl_walk_2.png" id="16_3j2sw"]
+[ext_resource type="Texture2D" uid="uid://dysimgkl5gvei" path="res://scene/game_objects/player/pl_walk_3.png" id="17_08txu"]
+[ext_resource type="Texture2D" uid="uid://bm637gvlfaxp5" path="res://scene/game_objects/player/pl_walk_4.png" id="18_4lkmg"]
+[ext_resource type="Texture2D" uid="uid://c4xg3fvllfnvb" path="res://scene/game_objects/player/тень_спрайты.png" id="19_b0dtr"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fg615"]
+resource_local_to_scene = true
+shader = ExtResource("6_l8oev")
+shader_parameter/percent = 0.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8w18y"]
 bg_color = Color(0, 0, 0, 1)
@@ -38,24 +49,33 @@ radius = 52.0096
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_i2o30")
+"texture": ExtResource("7_bq8gs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1vunj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_n8pg5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_pqda8")
 }],
-"loop": false,
+"loop": true,
 "name": &"hit",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_6qacu")
+"texture": ExtResource("11_rxhr8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_kmhla")
+"texture": ExtResource("12_mu4no")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_6n3le")
+"texture": ExtResource("13_woo0r")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_5r35s")
+"texture": ExtResource("14_faqv6")
 }],
 "loop": true,
 "name": &"idle",
@@ -63,16 +83,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_kiy7l")
+"texture": ExtResource("15_0ltp3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_vgjvu")
+"texture": ExtResource("16_3j2sw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_s6gq3")
+"texture": ExtResource("17_08txu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_8p638")
+"texture": ExtResource("18_4lkmg")
 }],
 "loop": true,
 "name": &"run",
@@ -86,9 +106,13 @@ radius = 5.0
 radius = 3.0
 height = 16.0
 
-[node name="Player" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" node_paths=PackedStringArray("shadow") groups=["player"]]
 collision_layer = 0
 script = ExtResource("1_8oolj")
+shadow = NodePath("Shadow")
+
+[node name="Shadow" type="Sprite2D" parent="."]
+texture = ExtResource("19_b0dtr")
 
 [node name="AbilityManager" type="Node" parent="."]
 
@@ -97,6 +121,11 @@ script = ExtResource("1_8oolj")
 [node name="HealthComponent" type="Node" parent="."]
 script = ExtResource("3_4fq0x")
 damage_text_scene = ExtResource("4_ja3y4")
+
+[node name="FlashComponent" parent="." node_paths=PackedStringArray("health_component", "sprite") instance=ExtResource("5_kyc5p")]
+health_component = NodePath("../HealthComponent")
+sprite = NodePath("../AnimatedSprite2D")
+flash_material = SubResource("ShaderMaterial_fg615")
 
 [node name="GracePeriod" type="Timer" parent="."]
 wait_time = 0.3
@@ -126,7 +155,7 @@ shape = SubResource("CircleShape2D_kovgu")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_x72wf")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

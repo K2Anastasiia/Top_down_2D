@@ -1,10 +1,78 @@
-[gd_scene load_steps=2 format=3 uid="uid://c8cwk8m17ub8h"]
+[gd_scene load_steps=6 format=3 uid="uid://c8cwk8m17ub8h"]
 
 [ext_resource type="Script" path="res://scene/ui/end_screen.gd" id="1_et6fh"]
+
+[sub_resource type="Animation" id="Animation_gg6qd"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fd75g"]
+resource_name = "in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_e2s2g"]
+resource_name = "out"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rx62o"]
+_data = {
+"RESET": SubResource("Animation_gg6qd"),
+"in": SubResource("Animation_fd75g"),
+"out": SubResource("Animation_e2s2g")
+}
 
 [node name="EndScreen" type="CanvasLayer"]
 process_mode = 3
 script = ExtResource("1_et6fh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_rx62o")
+}
+autoplay = "in"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.5644, 0.83, 0.807867, 0.454902)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15

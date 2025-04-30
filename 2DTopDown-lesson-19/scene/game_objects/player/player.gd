@@ -5,7 +5,7 @@ extends CharacterBody2D
 @onready var progress_bar: ProgressBar = $ProgressBar
 @onready var ability_manager: Node = $AbilityManager
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
-
+@export var shadow: Sprite2D
 
 var max_speed = 125
 var acceleration = .15
@@ -18,6 +18,8 @@ func _ready() -> void:
 	health_update()
 
 func _process(delta):
+	
+	move_shadow()
 	var direction = movement_vector().normalized()
 	var target_velocity = max_speed * direction
 	
@@ -43,6 +45,7 @@ func check_if_damaged():
 	if enemies_colliding == 0 || !grace_period.is_stopped():
 		return
 	health_component.take_damage(1)
+	animated_sprite_2d.play("hit")
 	grace_period.start()
 	
 	
@@ -73,3 +76,6 @@ func on_ability_upgrade_added(upgrade: AbilityUpgrade, current_upgrades: Diction
 		
 	var new_ability = upgrade as NewAbility
 	ability_manager.add_child(new_ability.new_ability_scene.instantiate())
+
+func move_shadow():
+	shadow.global_position = global_position + Vector2(0, 0) 
